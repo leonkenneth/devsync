@@ -1,0 +1,33 @@
+#! /bin/bash
+
+DIR="$HOME/.herodev/"
+
+download () {
+  URL="$1"
+  TARGET="$2"
+
+  cd $DIR
+    wget --quiet -O $TARGET $URL
+    chmod +x $TARGET
+  cd - > /dev/null
+}
+
+link () {
+  TARGET="$1"
+  ALIAS="$2"
+
+  ln -s $( which $TARGET ) ~/.herodev/$ALIAS
+}
+
+mkdir -p $DIR
+
+link     "heroku" "heroku-orig"
+download "https://s3.amazonaws.com/leonkenneth/herodev/$OSTYPE/herodev-init" "herodev-init"
+download "https://s3.amazonaws.com/leonkenneth/herodev/$OSTYPE/herodev-watch" "herodev-watch"
+download "https://s3.amazonaws.com/leonkenneth/herodev/$OSTYPE/herodev-toolbelt" "heroku"
+
+echo "export PATH=\"$DIR:\$PATH\"" >> ~/.bashrc
+source ~/.bashrc
+
+echo "*"
+echo "You are all set! Go to an Heroku app directory and type \`heroku dev:init\` to get started"

@@ -1,0 +1,7 @@
+#! /bin/bash
+
+DIR="$HOME/.herodev/"
+
+rm -rf $DIR
+
+# TODO: Remove line in bashrc
