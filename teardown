@@ -1,7 +1,5 @@
 #! /bin/bash
 
-DIR="$HOME/.herodev/"
+DIR="$HOME/.devsync/"
 
 rm -rf $DIR
-
-# TODO: Remove line in bashrc
